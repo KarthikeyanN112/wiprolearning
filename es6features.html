@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const numbers=[1,2,3];
+        const newnum=[...numbers,4,5,6];
+        console.log(newnum)
+
+        const student={
+            name:'karthik',subject:'cse'
+        }
+        const updatedstud={
+            ...student,id:'101',score:'100'
+        }
+        console.log(updatedstud)
+        //Traditional function
+        function add(a,b){
+            return a+b;
+        }
+        console.log(add(2,3));
+        //Arrow function
+        const multiply=(a,b)=>a*b;
+        console.log(multiply(3,4));
+
+        const square=(x)=>x*x;
+        console.log(square(5));
+
+         class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            // we can define methods inside the class
+            greet() { 
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        }
+        // we can create objects using the class
+        const alice =new Person("Alice", 25);
+        alice.greet(); // Output: Hello, my name is Alice and I am 25 years old.
+        // // Display details in dialog box
+         alert(`Person Details:\nName: ${alice.name}\nAge: ${alice.age}`);
+        //    const bob = new Person("Bob", 30);
+        // bob.greet(); // Output: Hello, my name is Bob and I am 30 years old.
+        // // Display details in dialog box
+        // alert(Person Details:\nName: ${bob.name}\n Age: ${bob.age});
+
+        <!-- In Js we have map & Set collections via which we can store unique values -->
+     <!-- Map() is a collection of key-value pairs ex  username and password, Transaction details etc -->
+        <!-- Set() is a collection of unique values ex  unique user IDs, unique product codes etc -->
+        // Example of Map
+        const map = new Map();
+        map.set("name", "Alice");
+        map.set("age", 25);
+        console.log("Map Example:");
+        map.forEach((value, key) => {
+            console.log(`${key}: ${value}`);
+        });
+        // Example of Set
+        const set = new Set();
+        set.add(1);
+        set.add(2);
+        set.add(2); // Duplicate value, will be ignored
+        console.log("Set Example:");
+        set.forEach(value => {
+            console.log(value);
+        });
+
+
+        const setcities = new Set();
+        setcities.add("chennai");
+        setcities.add("delhi");
+        setcities.add("delhi"); // Duplicate value, will be ignored
+        console.log("Set Cities:");
+        setcities.forEach(i => {
+            console.log(i);
+        });
+
+
+        class dog{
+            constructor (name,breed){
+            this.name=name;
+            this.breed=breed;
+            }
+            bark(){
+                console.log(`${this.name} is a ${this.breed}`);
+            }
+
+
+        }
+
+        dog1=new dog('ceaser','labrador')
+        dog1.bark()
+
+    
+    </script>
+</body>
+</html>

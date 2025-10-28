@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Display Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #todoList {
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+        }
+        #todoList li {
+            background: #f2f2f2;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List from API</h1>
+    <button id="loadTodos">Load Todos</button>
+    <ul id="todoList"></ul>
+
+    <script>
+        // Simulating API Call with Promises
+        function orderFood() { 
+            return new Promise((resolve, reject) => {
+                console.log("Step 1: You order something to eat.");
+                setTimeout(() => {
+                    console.log("Step 2: Kitchen prepares your food.");
+                    resolve("Food is ready!");
+                }, 2000);
+            });
+        }
+
+        function serveFood() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log("Step 3: Waiter brings food to your table.");
+                    resolve();
+                }, 1000);
+            });
+        }
+
+        orderFood()
+            .then((message) => {
+                console.log(message);
+                return serveFood();
+            })
+            .then(() => {
+                console.log("Enjoy your meal!");
+            });
+
+        // Simulated API call
+        function fetchData() {
+            return new Promise((resolve, reject) => {
+                let success = true;
+                if (!success) {
+                    reject("Error: Unable to fetch data from API.");
+                    return;
+                }
+                console.log("Fetching data from API...");
+                setTimeout(() => {
+                    const data = { id: 1, name: "John Doe" };
+                    resolve(data);
+                }, 1500);
+            });
+        }
+
+        fetchData()
+            .then((data) => {
+                console.log("Data received from API:", data);
+            });
+
+        // Real API call
+        function fetchTodo() {
+            return fetch('https://jsonplaceholder.typicode.com/todos')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                });
+        }
+
+        // Display fetched todos on the HTML page
+        document.getElementById("loadTodos").addEventListener("click", () => {
+            const todoList = document.getElementById("todoList");
+            todoList.innerHTML = "<li>Loading...</li>";
+
+            fetchTodo()
+                .then(data => {
+                    todoList.innerHTML = ""; // Clear the loading text
+                    // Show only first 10 todos for readability
+                    data.slice(0, 10).forEach(todo => {
+                        const li = document.createElement("li");
+                        li.textContent = `${todo.id}. ${todo.title} (${todo.completed ? "✅ Completed" : "❌ Pending"})`;
+                        todoList.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    todoList.innerHTML = `<li style="color:red;">Error: ${error.message}</li>`;
+                });
+        });
+    </script>
+</body>
+</html>
