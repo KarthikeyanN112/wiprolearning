@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Creating a collection of products is Array of objects
+        const products = [
+            { id: 1, name: "Product 1", price: 100 },
+            { id: 2, name: "Product 2", price: 200 },
+            { id: 3, name: "Product 3", price: 300 }
+        ];
+// Using forEach loop to iterate over the products array and display product details
+        products.forEach(product => {
+            console.log(`Product Name: ${product.name}, Price: ${product.price}`);
+            // Displaying array content in HTML body
+            document.body.innerHTML += `<h2>${product.name}</h2><p>Price: $${product.price}</p>`;
+        });
+    </script>
+</body>
+</html>
