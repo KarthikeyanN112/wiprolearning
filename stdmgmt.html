@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Management System (ES6 Demo)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f9fb;
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2a6fb5;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+    button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    .section {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1> Student Management System </h1>
+    <button id="runDemo">Run Assignment Demo</button>
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    
+    document.getElementById("runDemo").addEventListener("click", () => {
+
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = "";
+      const instituteName = "Anna University";
+      let courseName = "CSE";
+
+      outputDiv.innerHTML += `<div class='section'>
+        <h2> Course Information </h2>
+        <p><strong>Institute:</strong> ${instituteName}</p>
+        <p><strong>Course:</strong> ${courseName}</p>
+      </div>`;
+      const coreSubjects = ["HTML", "CSS", "JavaScript"];
+      const advancedSubjects = ["React", "Node.js", "MongoDB"];
+      const allSubjects = [...coreSubjects, ...advancedSubjects];
+
+      outputDiv.innerHTML += `<div class='section'>
+        <h2> Subjects </h2>
+        <p><strong>Core Subjects:</strong> ${coreSubjects.join(", ")}</p>
+        <p><strong>Advanced Subjects:</strong> ${advancedSubjects.join(", ")}</p>
+        <p><strong>All Subjects:</strong> ${allSubjects.join(", ")}</p>
+      </div>`;
+
+      const greet = (name) => ` Welcome, ${name}, to the ${courseName} course!`;
+
+      class Student {
+        constructor(name, age, skills) {
+          this.name = name;
+          this.age = age;
+          this.skills = skills;
+        }
+
+        display() {
+          return `<strong>${this.name}</strong> (Age: ${this.age})<br>Skills: ${this.skills.join(", ")}`;
+        }
+      }
+
+      const student1 = new Student("Karthik", 20, ["HTML", "CSS", "JavaScript"]);
+      const student2 = new Student("Ram", 22, ["JavaScript", "React", "Node.js"]);
+
+      outputDiv.innerHTML += `<div class='section'>
+        <h2> Student Details </h2>
+        <p>${greet(student1.name)}</p>
+        <p>${student1.display()}</p>
+        <p>${greet(student2.name)}</p>
+        <p>${student2.display()}</p>
+      </div>`;
+
+      const grades = new Map();
+      grades.set(student1.name, "A");
+      grades.set(student2.name, "B+");
+
+      let gradeOutput = "";
+      grades.forEach((grade, name) => {
+        gradeOutput += `<li>${name}: ${grade}</li>`;
+      });
+
+      outputDiv.innerHTML += `<div class='section'>
+        <h2> Grades</h2>
+        <ul>${gradeOutput}</ul>
+      </div>`;
+
+      const allSkills = new Set([...student1.skills, ...student2.skills]);
+
+      outputDiv.innerHTML += `<div class='section'>
+        <h2> Unique Skills </h2>
+        <p>${[...allSkills].join(", ")}</p>
+      </div>`;
+
+    });
+  </script>
+
+</body>
+</html>
