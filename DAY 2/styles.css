@@ -1,0 +1,13 @@
+body {
+  background-color: orange;
+  font-family: Arial, sans-serif;
+}
+h1, h2 {
+  color: #4b0082;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.1em;
+  color: #333;
+}
